@@ -1,24 +1,54 @@
 import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import axios from 'axios';
 
 function App() {
+
+  const [query, updateQuery] = React.useState('');
+  const GITHUB_API_URL = "https://api.github.com/search/repositories";
+
+  function onSubmit(e: React.FormEvent<HTMLFormElement>): void {
+    e.preventDefault();
+    const target = e.target as typeof e.target & {
+      search: { value: string };
+    };
+    // console.log(target);
+    const search = target.search.value; 
+    // console.log(search);
+    updateQuery(search);
+    getRepos(search)
+  }
+
+  function createQuery(language: string, minStars=50000) {
+    let query = `stars:>${minStars} language:${language}`;
+    return query;
+  }
+
+  async function getRepos(language: string, sort="stars", order="desc") {
+    let query = createQuery(language);
+    let params = {"q": query, "sort": sort, "order": order}
+
+    // For Testing - Due to rate limits on github API
+    // let res =  await axios.get(`https://jsonplaceholder.typicode.com/users`).then(res => res);
+    // let resStatus = res.status;
+
+    let response = await axios.get(GITHUB_API_URL, { params });
+    let responseStatus = response.status;
+
+    if (responseStatus !== 200) {
+        throw new Error(`${response.status}, Request was unsuccessful`);
+    } else {
+      console.log(response.data["items"]);
+      return response.data["items"];
+    }
+  }
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <form action="" onSubmit={onSubmit}>
+        <label htmlFor="search">Search Git Repos:</label>
+        <input type="text" id="search" aria-label="Search through git repos"></input>
+        <input type="submit"/>
+      </form>
     </div>
   );
 }
