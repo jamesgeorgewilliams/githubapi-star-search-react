@@ -1,9 +1,12 @@
 import React from 'react';
 import axios from 'axios';
+import Card from './components/Card'
 
 function App() {
 
   const [query, updateQuery] = React.useState('');
+  const [state, setState] = React.useState();
+
   const GITHUB_API_URL = "https://api.github.com/search/repositories";
 
   function onSubmit(e: React.FormEvent<HTMLFormElement>): void {
@@ -15,7 +18,7 @@ function App() {
     const search = target.search.value; 
     // console.log(search);
     updateQuery(search);
-    getRepos(search)
+    getRepos(search);
   }
 
   function createQuery(language: string, minStars=50000) {
@@ -23,7 +26,10 @@ function App() {
     return query;
   }
 
-  async function getRepos(language: string, sort="stars", order="desc") {
+  interface ItemKeys {language: string, stargazers_count: number, name: string }
+
+
+  async function getRepos(language: string, sort="stars", order="desc"): Promise<{}[]> {
     let query = createQuery(language);
     let params = {"q": query, "sort": sort, "order": order}
 
@@ -37,10 +43,20 @@ function App() {
     if (responseStatus !== 200) {
         throw new Error(`${response.status}, Request was unsuccessful`);
     } else {
-      console.log(response.data["items"]);
-      return response.data["items"];
+      setState(response.data["items"].map((item: any) => ({
+        language: item.language,
+        stargazers_count: item.stargazers_count,
+        name: item.name
+      }) as ItemKeys))
+      // return response.data["items"];
+      return response.data["items"].map((item: any) => ({
+        language: item.language,
+        stargazers_count: item.stargazers_count,
+        name: item.name
+      }) as ItemKeys);
     }
   }
+
 
   return (
     <div className="App">
