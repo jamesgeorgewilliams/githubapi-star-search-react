@@ -5,7 +5,7 @@ import Card from './components/Card'
 function App() {
 
   const [query, updateQuery] = React.useState('');
-  const [state, setState] = React.useState();
+  const [state, setState] = React.useState([]);
 
   const GITHUB_API_URL = "https://api.github.com/search/repositories";
 
@@ -65,6 +65,7 @@ function App() {
         <input type="text" id="search" aria-label="Search through git repos"></input>
         <input type="submit"/>
       </form>
+      {state && state.map((item: any) => <Card />)}
     </div>
   );
 }
