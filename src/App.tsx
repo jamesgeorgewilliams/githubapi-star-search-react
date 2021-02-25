@@ -60,7 +60,11 @@ function App() {
         <input type="text" id="search" aria-label="Search through git repos"></input>
         <input type="submit"/>
       </form>
-      {state && state.map((item: any) => <Card />)}
+      <div>
+        <ul>
+          {state && state.map((item: any) => <Card {...item} key={item.name} />)}
+        </ul>
+      </div>
     </div>
   );
 }
