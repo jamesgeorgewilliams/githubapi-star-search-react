@@ -1,5 +1,6 @@
 import React from 'react';
 import axios from 'axios';
+import Canvas from './components/Canvas'
 import Card from './components/Card'
 
 function App() {
@@ -55,6 +56,7 @@ function App() {
 
   return (
     <div className="App">
+      <Canvas />
       <form action="" onSubmit={onSubmit}>
         <label htmlFor="search">Search Git Repos:</label>
         <input type="text" id="search" aria-label="Search through git repos"></input>
