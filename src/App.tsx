@@ -4,9 +4,7 @@ import Card from './components/Card'
 
 function App() {
 
-  const [query, updateQuery] = React.useState('');
   const [state, setState] = React.useState([]);
-
   const GITHUB_API_URL = "https://api.github.com/search/repositories";
 
   function onSubmit(e: React.FormEvent<HTMLFormElement>): void {
@@ -14,10 +12,7 @@ function App() {
     const target = e.target as typeof e.target & {
       search: { value: string };
     };
-    // console.log(target);
     const search = target.search.value; 
-    // console.log(search);
-    updateQuery(search);
     getRepos(search);
   }
 
