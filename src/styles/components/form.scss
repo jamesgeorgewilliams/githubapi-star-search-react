@@ -1,7 +1,7 @@
 form {
   padding: 1rem 0;
   display: grid;
-  grid-template-columns: auto;
+  grid-template-columns: auto 100px;
   grid-template-rows: auto;
   grid-template-areas:
     "label none"

@@ -20,7 +20,7 @@ function App() {
     }
   }
 
-  function createQuery(language: string, minStars=50000) {
+  function createQuery(language: string, minStars=10000) {
     let query = `stars:>${minStars} language:${language}`;
     return query;
   }
