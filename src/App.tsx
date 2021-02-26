@@ -67,7 +67,7 @@ function App() {
           <form action="" onSubmit={onSubmit}>
             <label htmlFor="search">Language</label>
             <input type="text" id="search" aria-label="Search through git repos"></input>
-            <input type="submit"/>
+            <input type="submit" value="Submit"/>
           </form>
           <div className="list">
             <ul>
