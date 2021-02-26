@@ -18,6 +18,8 @@ function App() {
     if (search) {
       getRepos(search);
     }
+
+    target.search.value = '';
   }
 
   function createQuery(language: string, minStars=10000) {
