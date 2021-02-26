@@ -58,9 +58,9 @@ function App() {
       <Canvas />
       <main className="page">
         <div className="container">
-          <p><span><b>github</b></span>stars</p>
+          <p className="logo"><b>github</b><span>stars</span></p>
           <form action="" onSubmit={onSubmit}>
-            <label htmlFor="search">Search Git Repos</label>
+            <label htmlFor="search">Language</label>
             <input type="text" id="search" aria-label="Search through git repos"></input>
             <input type="submit"/>
           </form>
