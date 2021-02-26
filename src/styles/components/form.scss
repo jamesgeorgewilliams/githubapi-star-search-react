@@ -10,10 +10,12 @@ form {
 
 label {
   grid-area: label;
+  color: hsla(0, 0%, 0%, 0.9);
 }
 
 input[type="text"] {
   grid-area: input;
+  border: 1px solid hsla(0, 0%, 0%, 0.9);
 }
 
 input::placeholder {
@@ -22,9 +24,17 @@ input::placeholder {
 
 input[type="submit"] {
   grid-area: button;
+  color: hsl(0, 0%, 100%);
+  background-color: hsla(0, 0%, 0%, 0.9);
+  border: none;
+  cursor: pointer;
   margin-left: 0.5rem;
 }
 
+input[type="submit"]:hover {
+  background-color: hsla(0, 0%, 0%, 0.75);
+}
+
 input {
-  height: 2.5rem;
+  height: 2rem;
 }
