@@ -39,7 +39,7 @@ function App() {
     if (responseStatus !== 200) {
         throw new Error(`${response.status}, Request was unsuccessful`);
     } else {
-      setState(response.data["items"].map((item: any) => ({
+      setState(response.data["items"].slice(0, 12).map((item: any) => ({
         language: item.language,
         stargazers_count: item.stargazers_count,
         name: item.name
@@ -63,12 +63,12 @@ function App() {
             <label htmlFor="search">Search Git Repos</label>
             <input type="text" id="search" aria-label="Search through git repos"></input>
             <input type="submit"/>
-          <div>
+          </form>
+          <div className="list">
             <ul>
               {state && state.map((item: any) => <Card {...item} key={item.name} />)}
             </ul>
           </div>
-          </form>
         </div>
       </main>
     </div>
