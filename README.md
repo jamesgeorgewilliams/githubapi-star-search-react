@@ -2,4 +2,8 @@
 
 This is an application which seaches the most starred github repositories for a given language.
 
-The application is built using TypeScript & React. It is currently under construction, so there will be changes to the repository.
+### Link to access website online
+
+[See online](https://github-search-stars.netlify.app/ "Project on netlify")
+
+The application is built using TypeScript & React. It also uses the Canvas API for animation.
