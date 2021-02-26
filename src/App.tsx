@@ -14,7 +14,7 @@ function App() {
       search: { value: string };
     };
     const search = target.search.value;
-    
+
     if (search) {
       getRepos(search);
     }
@@ -42,12 +42,12 @@ function App() {
     if (responseStatus !== 200) {
         throw new Error(`${response.status}, Request was unsuccessful`);
     } else {
-      setState(response.data["items"].slice(0, 12).map((item: any) => ({
+      setState(response.data["items"].slice(0, 12).map((item: ItemKeys) => ({
         language: item.language,
         stargazers_count: item.stargazers_count,
         name: item.name
       }) as ItemKeys))
-      return response.data["items"].map((item: any) => ({
+      return response.data["items"].map((item: ItemKeys) => ({
         language: item.language,
         stargazers_count: item.stargazers_count,
         name: item.name
@@ -69,7 +69,7 @@ function App() {
           </form>
           <div className="list">
             <ul>
-              {state && state.map((item: any) => <Card {...item} key={item.name} />)}
+              {state && state.map((item: ItemKeys) => <Card {...item} key={item.name} />)}
             </ul>
           </div>
         </div>
