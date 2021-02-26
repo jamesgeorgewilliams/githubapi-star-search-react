@@ -3,21 +3,21 @@ import { useRef, useEffect } from 'react';
 const Canvas: React.FC = (): JSX.Element => {
 
     const canvasRef = useRef<HTMLCanvasElement>(null!);
-    const particlesArray: {
-        x: number
-        y: number
-        size: number
-        speedX: number
-        speedY: number
-        update(): void
-        draw(): void
-    }[] = [];
 
     useEffect(() => {
         const canvas = canvasRef.current;
         const ctx = canvas.getContext('2d')!;
         canvas.width = window.innerWidth;
         canvas.height = window.innerHeight;
+        const particlesArray: {
+            x: number
+            y: number
+            size: number
+            speedX: number
+            speedY: number
+            update(): void
+            draw(): void
+        }[] = [];
         
 
         window.addEventListener('resize', () => {
@@ -47,7 +47,7 @@ const Canvas: React.FC = (): JSX.Element => {
             update(): void {
                 this.x += this.speedX;
                 this.y += this.speedY;
-                this.opacity += 0.01;
+                this.opacity += 0.03;
                 if (this.size > 0.2) this.size -= 0.001;
             }
             

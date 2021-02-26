@@ -44,7 +44,6 @@ function App() {
         stargazers_count: item.stargazers_count,
         name: item.name
       }) as ItemKeys))
-      // return response.data["items"];
       return response.data["items"].map((item: any) => ({
         language: item.language,
         stargazers_count: item.stargazers_count,
@@ -57,16 +56,21 @@ function App() {
   return (
     <div className="App">
       <Canvas />
-      <form action="" onSubmit={onSubmit}>
-        <label htmlFor="search">Search Git Repos:</label>
-        <input type="text" id="search" aria-label="Search through git repos"></input>
-        <input type="submit"/>
-      </form>
-      <div>
-        <ul>
-          {state && state.map((item: any) => <Card {...item} key={item.name} />)}
-        </ul>
-      </div>
+      <main className="page">
+        <div className="container">
+          <p><span><b>github</b></span>stars</p>
+          <form action="" onSubmit={onSubmit}>
+            <label htmlFor="search">Search Git Repos</label>
+            <input type="text" id="search" aria-label="Search through git repos"></input>
+            <input type="submit"/>
+          <div>
+            <ul>
+              {state && state.map((item: any) => <Card {...item} key={item.name} />)}
+            </ul>
+          </div>
+          </form>
+        </div>
+      </main>
     </div>
   );
 }

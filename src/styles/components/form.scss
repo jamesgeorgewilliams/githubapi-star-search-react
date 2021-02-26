@@ -1,4 +1,23 @@
 form {
-  //   display: grid;
-  //   grid-template-columns: auto 1fr auto;
+  display: grid;
+  grid-template-columns: auto 100px;
+  grid-template-areas:
+    "label label"
+    "input button";
+}
+
+label {
+  grid-area: label;
+}
+
+input[type="text"] {
+  grid-area: input;
+}
+
+input[type="submit"] {
+  grid-area: button;
+}
+
+input {
+  height: 2.5rem;
 }
