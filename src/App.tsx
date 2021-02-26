@@ -13,8 +13,11 @@ function App() {
     const target = e.target as typeof e.target & {
       search: { value: string };
     };
-    const search = target.search.value; 
-    getRepos(search);
+    const search = target.search.value;
+    
+    if (search) {
+      getRepos(search);
+    }
   }
 
   function createQuery(language: string, minStars=50000) {
